@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('Testar funcionalidades, editar, adicionar e excluir contatos', () => {
   beforeEach(() => {
     cy.visit('https://agenda-contatos-react.vercel.app/');
@@ -5,13 +7,12 @@ describe('Testar funcionalidades, editar, adicionar e excluir contatos', () => {
 
   it('Teste adicionar, editar e excluir contato', () => {
     const novoContato = {
-      text: 'Sdney Fernandes',
-      email: 'fsidney@gmail.com',
-      tel: '71992032184',
+      text: 'Jacqueline Kenny',
+      email: 'jkennyvasconcelos@gmail.com',
+      tel: '1020513111',
     };
 
-    //Estava dando um erro que eu não conseguia resolver, então adicionei varios log e screenshots, para inserir tempo e expecificidade para identificar o erro
-
+    
     cy.log('Adicionando novo contato');
     cy.get('.sc-gLDzan.ckeKmo').within(() => {
       cy.get('input[type="text"]').type(novoContato.text);
@@ -46,9 +47,9 @@ describe('Testar funcionalidades, editar, adicionar e excluir contatos', () => {
 
     cy.log('Editando informações do contato');
     cy.get('.sc-gLDzan.ckeKmo').within(() => {
-      cy.get('input[type="text"]').clear().type('Sdney Pereira Fernandes');
-      cy.get('input[type="email"]').clear().type('fsidney.pereira@gmail.com');
-      cy.get('input[type="tel"]').clear().type('71992032185');
+      cy.get('input[type="text"]').clear().type('Jacqueline Kenny');
+      cy.get('input[type="email"]').clear().type('jkennyvasconcelos@gmail.com');
+      cy.get('input[type="tel"]').clear().type('1020513111');
       cy.get('button[type="submit"]').click(); 
     });
 
@@ -58,9 +59,9 @@ describe('Testar funcionalidades, editar, adicionar e excluir contatos', () => {
     cy.log('Verificando contato editado');
     cy.get('.sc-beqWaB.eQdhbg.contato').last().within(() => {
       cy.get('.sc-dmqHEX.frIrmM').within(() => {
-        cy.get('.sc-eDDNvR.cTVgex li').eq(0).should('contain', 'Sdney Pereira Fernandes');
-        cy.get('.sc-eDDNvR.cTVgex li').eq(1).should('contain', '71992032185');
-        cy.get('.sc-eDDNvR.cTVgex li').eq(2).should('contain', 'fsidney.pereira@gmail.com');
+        cy.get('.sc-eDDNvR.cTVgex li').eq(0).should('contain', 'Jacqueline Kenny');
+        cy.get('.sc-eDDNvR.cTVgex li').eq(1).should('contain', '1020513111');
+        cy.get('.sc-eDDNvR.cTVgex li').eq(2).should('contain', 'jkennyvasconcelos@gmail.com');
       });
     });
 
@@ -77,7 +78,7 @@ describe('Testar funcionalidades, editar, adicionar e excluir contatos', () => {
 
     cy.log('Verificando se o contato foi excluído');
     cy.get('.sc-beqWaB.eQdhbg.contato').last().within(() => {
-      cy.get('.sc-eDDNvR.cTVgex li').should('not.contain', 'Sdney Pereira Fernandes');
+      cy.get('.sc-eDDNvR.cTVgex li').should('not.contain', 'Jacqueline Kenny');
     });
 
     cy.log('Contato excluído verificado');
